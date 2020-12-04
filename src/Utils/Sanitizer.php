@@ -2,6 +2,8 @@
 
 namespace Arbory\AdminLog\Utils;
 
+use Illuminate\Support\Arr;
+
 class Sanitizer
 {
     /**
@@ -37,7 +39,7 @@ class Sanitizer
      */
     protected function setSensitiveStringPatterns()
     {
-        $identifiers = array_get($this->config, 'sensitive_string_identifiers');
+        $identifiers = Arr::get($this->config, 'sensitive_string_identifiers');
 
         $this->sensitiveStringPatterns = array_map(function ($identifier) {
             return '/(?<=\b' . $identifier . '=)(.+)(\b)/U';
@@ -62,7 +64,7 @@ class Sanitizer
     protected function getRemovedValueNotification()
     {
         if (!$this->removeValueNotification) {
-            $this->removeValueNotification = array_get($this->config, 'removed_value_notification');
+            $this->removeValueNotification = Arr::get($this->config, 'removed_value_notification');
         }
 
         return $this->removeValueNotification;
@@ -162,8 +164,8 @@ class Sanitizer
     {
         if (!$this->sensitiveKeyPatterns) {
             $this->sensitiveKeyPatterns = array_merge(
-                array_get($this->config, 'sensitive_key_patterns'),
-                array_get($this->config, 'sensitive_string_identifiers')
+                Arr::get($this->config, 'sensitive_key_patterns'),
+                Arr::get($this->config, 'sensitive_string_identifiers')
             );
         }
 
