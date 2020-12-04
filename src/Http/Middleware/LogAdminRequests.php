@@ -7,6 +7,7 @@ use Closure;
 use Arbory\AdminLog\Models\AdminLog;
 use Arbory\AdminLog\Utils\Sanitizer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class LogAdminRequests
 {
@@ -51,7 +52,7 @@ class LogAdminRequests
             'ip' => $request->getClientIp(),
             'ips' => join(',', $request->ips()),
             'request_method' => $request->getRealMethod(),
-            'http_referer' => join(',', array_wrap($request->header('HTTP_REFERER', null))),
+            'http_referer' => join(',', Arr::wrap($request->header('HTTP_REFERER', null))),
             'user_agent' => $request->userAgent(),
             'http_content_type' => $request->getContentType(),
             'http_cookie' => serialize($sanitizer->sanitize($request->cookies->all())),
