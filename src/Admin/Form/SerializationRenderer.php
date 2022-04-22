@@ -9,18 +9,11 @@ use Arbory\Base\Html\Html;
 
 class SerializationRenderer extends GenericRenderer
 {
-    /**
-     * SerializationRenderer constructor.
-     * @param FieldInterface $field
-     */
     public function __construct(FieldInterface $field)
     {
         $this->field = $field;
     }
 
-    /**
-     * @return Element
-     */
     protected function getInput(): Element
     {
         $content = unserialize($this->field->getValue());
@@ -45,18 +38,11 @@ class SerializationRenderer extends GenericRenderer
         ]);
     }
 
-    /**
-     * @return Element
-     */
     public function render(): Element
     {
         return $this->getInput();
     }
 
-    /**
-     * @param array|null $style
-     * @return string
-     */
     public function getStyle(?array $style = []): string
     {
         $return = '';

@@ -7,10 +7,7 @@ use Arbory\Base\Html\Elements\Element;
 
 class Serialization extends AbstractField
 {
-    /**
-     * @return Element
-     */
-    public function render()
+    public function render(): Element
     {
         return (new SerializationRenderer($this))->render();
     }

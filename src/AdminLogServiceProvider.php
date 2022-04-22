@@ -9,13 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AdminLogServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @param Router $router
-     * @return void
-     */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         if ($router->hasMiddlewareGroup('admin')) {
             $router->pushMiddlewareToGroup('admin', LogAdminRequests::class);
@@ -40,12 +34,7 @@ class AdminLogServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/admin-log.php', 'admin-log');
     }

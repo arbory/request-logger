@@ -9,22 +9,19 @@ use Arbory\Base\Admin\Form;
 use Arbory\Base\Admin\Form\FieldSet;
 use Arbory\Base\Admin\Grid;
 use Arbory\Base\Admin\Traits\Crudify;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class AdminLogController extends Controller
 {
     use Crudify;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $resource = AdminLog::class;
 
-    /**
-     * @param Form $form
-     * @return Form
-     */
-    protected function form(Form $form)
+    protected function form(Form $form): Form
     {
         $form->setFields(function (FieldSet $fieldSet) {
 
@@ -76,10 +73,7 @@ class AdminLogController extends Controller
         return $form;
     }
 
-    /**
-     * @return Grid
-     */
-    public function grid(Grid $grid)
+    public function grid(Grid $grid): Grid
     {
         $grid->column('user_name', trans('admin-log::common.user_name'))
             ->sortable();
@@ -102,16 +96,14 @@ class AdminLogController extends Controller
         return $grid;
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request)
+    public function update(Request $request, $resourceId): JsonResponse|RedirectResponse|Redirector
     {
         if ($request->ajax()) {
             return response()->json(['ok']);
         }
 
-        return $this->getAfterEditResponse($request);
+        $resource = $this->findOrNew($resourceId);
+
+        return $this->getAfterEditResponse($request, $resource);
     }
 }

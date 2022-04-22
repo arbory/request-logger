@@ -8,26 +8,13 @@ use Illuminate\Console\Command;
 
 class CleanupAdminLog extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $signature = 'arbory:cleanup-admin-log';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $description = 'Cleanup Arbory admin log table';
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle()
+    public function handle(): void
     {
         $retainFor = config('admin-log.cleanup.retain_for_days', 0);
 
