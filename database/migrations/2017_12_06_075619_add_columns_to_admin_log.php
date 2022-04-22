@@ -6,12 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddColumnsToAdminLog extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::table('admin_log', function (Blueprint $table) {
             $table->dropColumn('forwarded_ip');
@@ -22,16 +17,10 @@ class AddColumnsToAdminLog extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::table('admin_log', function (Blueprint $table) {
             $table->string('forwarded_ip')->nullable();
-
             $table->dropColumn('ips');
             $table->dropColumn('http_content_type');
             $table->dropColumn('session');

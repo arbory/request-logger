@@ -2,52 +2,37 @@
 
 namespace Arbory\AdminLog\Utils;
 
+use Illuminate\Support\Arr;
+
 class Sanitizer
 {
-    /**
-     * @var array
-     * */
+    /** @var array */
     protected $config;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $removeValueNotification;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $sensitiveStringPatterns;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $sensitiveKeyPatterns;
 
-    /**
-     * Sanitizer constructor
-     */
     public function __construct()
     {
         $this->config = config('admin-log.sanitizer');
     }
 
-    /**
-     * @return void
-     */
-    protected function setSensitiveStringPatterns()
+    protected function setSensitiveStringPatterns(): void
     {
-        $identifiers = array_get($this->config, 'sensitive_string_identifiers');
+        $identifiers = Arr::get($this->config, 'sensitive_string_identifiers');
 
         $this->sensitiveStringPatterns = array_map(function ($identifier) {
             return '/(?<=\b' . $identifier . '=)(.+)(\b)/U';
         }, $identifiers);
     }
 
-    /**
-     * @return array
-     */
-    protected function getSensitiveStringPatterns()
+    protected function getSensitiveStringPatterns(): array
     {
         if (!isset($this->sensitiveStringPatterns)) {
             $this->setSensitiveStringPatterns();
@@ -56,23 +41,16 @@ class Sanitizer
         return $this->sensitiveStringPatterns;
     }
 
-    /**
-     * @return string
-     */
-    protected function getRemovedValueNotification()
+    protected function getRemovedValueNotification(): string
     {
         if (!$this->removeValueNotification) {
-            $this->removeValueNotification = array_get($this->config, 'removed_value_notification');
+            $this->removeValueNotification = Arr::get($this->config, 'removed_value_notification');
         }
 
         return $this->removeValueNotification;
     }
 
-    /**
-     * @param array|string $value
-     * @return array|string
-     */
-    public function sanitize($value)
+    public function sanitize(array|string $value): array|string
     {
         if (is_string($value)) {
             return $this->sanitizeString($value);
@@ -83,11 +61,7 @@ class Sanitizer
         return $value;
     }
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    protected function sanitizeString($string)
+    protected function sanitizeString(string $string): string
     {
         return preg_replace(
             $this->getSensitiveStringPatterns(),
@@ -96,22 +70,14 @@ class Sanitizer
         );
     }
 
-    /**
-     * @param array $array
-     * @return string
-     */
-    protected function sanitizeArray($array)
+    protected function sanitizeArray(array $array): string
     {
         $array = $this->sanitizeArrayValues($array);
 
         return $this->sanitizeString(print_r($array, true));
     }
 
-    /**
-     * @param array $array
-     * @return array
-     */
-    protected function sanitizeArrayValues($array)
+    protected function sanitizeArrayValues(array $array): array
     {
         if (is_array($array)) {
             foreach ($array as $key => $value) {
@@ -138,11 +104,7 @@ class Sanitizer
         return $array;
     }
 
-    /**
-     * @param string $key
-     * @return bool
-     */
-    protected function isSensitiveArrayKey($key)
+    protected function isSensitiveArrayKey(string $key): bool
     {
         $patterns = $this->getSensitiveKeyPatterns();
 
@@ -155,15 +117,12 @@ class Sanitizer
         return false;
     }
 
-    /**
-     * @return array
-     */
-    protected function getSensitiveKeyPatterns()
+    protected function getSensitiveKeyPatterns(): array
     {
         if (!$this->sensitiveKeyPatterns) {
             $this->sensitiveKeyPatterns = array_merge(
-                array_get($this->config, 'sensitive_key_patterns'),
-                array_get($this->config, 'sensitive_string_identifiers')
+                Arr::get($this->config, 'sensitive_key_patterns'),
+                Arr::get($this->config, 'sensitive_string_identifiers')
             );
         }
 

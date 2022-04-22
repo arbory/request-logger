@@ -6,14 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminLog extends Model
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $table = 'admin_log';
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $fillable = [
         'user_name',
         'request_uri',
@@ -28,9 +24,6 @@ class AdminLog extends Model
         'content'
     ];
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (string)$this->user_name;

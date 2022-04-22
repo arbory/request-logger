@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "arbory/arbory": "^1.0"
+        "laravel/framework": "^8"
     },
     "extra": {
         "laravel": {

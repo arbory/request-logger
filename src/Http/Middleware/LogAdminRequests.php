@@ -6,41 +6,31 @@ use Cartalyst\Sentinel\Sentinel;
 use Closure;
 use Arbory\AdminLog\Models\AdminLog;
 use Arbory\AdminLog\Utils\Sanitizer;
+use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class LogAdminRequests
 {
-    /**
-     * @var Sentinel
-     */
+    /** @var Sentinel */
     protected $sentinel;
 
-    /**
-     * The names of the attributes
-     * that should not be trimmed.
-     *
-     * @var array
-     */
+    /** @var mixed|Repository */
+    protected $config;
+
+    /** @var array */
     protected $hideFields = [
         'password',
         'password_confirmation',
     ];
 
-    /**
-     * @param Sentinel $sentinel
-     */
     public function __construct(Sentinel $sentinel)
     {
         $this->sentinel = $sentinel;
         $this->config = config('admin-log');
     }
 
-    /**
-     * @param Request $request
-     * @param Closure $next
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $sanitizer = new Sanitizer();
         $user = $this->sentinel->getUser();
@@ -51,7 +41,7 @@ class LogAdminRequests
             'ip' => $request->getClientIp(),
             'ips' => join(',', $request->ips()),
             'request_method' => $request->getRealMethod(),
-            'http_referer' => join(',', array_wrap($request->header('HTTP_REFERER', null))),
+            'http_referer' => join(',', Arr::wrap($request->header('HTTP_REFERER', null))),
             'user_agent' => $request->userAgent(),
             'http_content_type' => $request->getContentType(),
             'http_cookie' => serialize($sanitizer->sanitize($request->cookies->all())),
@@ -62,10 +52,7 @@ class LogAdminRequests
         return $next($request);
     }
 
-    /**
-     * @return array
-     */
-    private function getSession()
+    private function getSession(): array
     {
         $session = request()->session()->all();
 
@@ -73,5 +60,4 @@ class LogAdminRequests
             ->except($this->config['session_blacklist_keys'])
             ->toArray();
     }
-
 }

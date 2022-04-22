@@ -6,12 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAdminLogTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('admin_log', function (Blueprint $table) {
             $table->increments('id');
@@ -27,12 +22,7 @@ class CreateAdminLogTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('admin_log');
     }
