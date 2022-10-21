@@ -14,7 +14,13 @@
         }
     },
     "require": {
-        "laravel/framework": "^8"
+        "laravel/framework": "^9",
+        "arbory/arbory": "^2"
+    },
+    "require-dev": {
+        "cubesystems/static-analysers": "^3.1",
+        "orchestra/testbench": "^7.11",
+        "psr/simple-cache": "^2"
     },
     "extra": {
         "laravel": {
@@ -22,5 +28,12 @@
                 "Arbory\\AdminLog\\AdminLogServiceProvider"
             ]
         }
-    }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
