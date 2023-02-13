@@ -5,7 +5,7 @@ namespace Arbory\AdminLog\Database\Factories\Models;
 use Arbory\AdminLog\Models\AdminLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AnchorLaneFactory extends Factory
+class AdminLogFactory extends Factory
 {
     protected $model = AdminLog::class;
 
