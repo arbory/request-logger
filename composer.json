@@ -6,11 +6,16 @@
         {
             "name": "Martins Ungurs",
             "email": "martins.ungurs@cube.lv"
+        },
+        {
+            "name": "Janis Osenieks",
+            "email": "janis.osenieks@cube.lv"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Arbory\\AdminLog\\": "src/"
+            "Arbory\\AdminLog\\": "src/",
+            "Arbory\\AdminLog\\Database\\Factories\\": "database/factories"
         }
     },
     "require": {

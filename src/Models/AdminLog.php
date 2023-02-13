@@ -2,6 +2,7 @@
 
 namespace Arbory\AdminLog\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -19,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdminLog extends Model
 {
+    use HasFactory;
+
     /** @var string */
     protected $table = 'admin_log';
 
