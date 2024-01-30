@@ -81,7 +81,6 @@ class Sanitizer
     {
         if (is_array($array)) {
             foreach ($array as $key => $value) {
-
                 if (is_object($value)) {
                     if ($value instanceof \Closure) {
                         $value = null;

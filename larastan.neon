@@ -1,0 +1,21 @@
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+parameters:
+	ignoreErrors:
+	    - '#PHPDoc tag @throws with type#'
+	    - '#FieldInterface::translatable\(\)#'
+	    - '#Call to an undefined method Arbory[a-zA-Z0-9\\_]+FieldSet::#'
+	    - '# but returns Illuminate\\Database\\Eloquent\\Model#'
+	    - '# but returns [a-zA-Z0-9\\_]|Illuminate\\Database\\Eloquent\\Model#'
+	    - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Relations\\HasOne::#'
+	    - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Relations\\HasMany::#'
+	    - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder::#'
+	    - '#Call to an undefined method Arbory\\Base\\Admin\\Form\\Fields#'
+	    - '#::dynamicWhere\(\)#'
+	    - '#::toHierarchy\(\)#'
+	    - '#::withTranslation\(\)#'
+	    - '#::withTrashed\(\)#'
+	    - '#Relation::getForeignKey\(\)#'
+	    - '#Relation::getForeignKeyName\(\)#'
+	    - '#Illuminate\\Support\\HigherOrderCollectionProxy#'
+	    - '#Function factory invoked with 2 parameter#'

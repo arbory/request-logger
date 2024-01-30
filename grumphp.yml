@@ -1,0 +1,38 @@
+grumphp:
+  process_timeout: 120
+  testsuites:
+    static:
+      tasks:
+        - composer
+        - git_blacklist
+        - git_commit_message
+        - phpcs
+        - phpmd
+        - phpmnd
+        - phpstan
+  tasks:
+    composer:
+    git_commit_message:
+      max_subject_width: 100
+    git_blacklist:
+      keywords:
+        - '(;| |^)(die|dd|dump|var_dump|eval)\('
+        - '(;| |^)exit;'
+      regexp_type: E
+    phpcs:
+      standard: ['PSR2', 'phpcs.xml']
+      whitelist_patterns: ['/^src(.*)/', '/^config(.*)/', '/^resources(.*)/']
+      exclude: ['Generic.Files.LineEndings']
+      ignore_patterns: ['resources/lang/', '*.blade.php']
+    phpstan:
+      configuration: './larastan.neon'
+      force_patterns: ['/^src/']
+      ignore_patterns: ['/^database/']
+      level: 1
+    phpmd:
+      whitelist_patterns: ['/^src(.*)/', '/^config(.*)/', '/^resources(.*)/']
+      ruleset: ['./phpmd-ruleset.xml']
+    phpmnd:
+      directory: 'app'
+      hint: false
+

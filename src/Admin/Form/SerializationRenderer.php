@@ -19,8 +19,9 @@ class SerializationRenderer extends GenericRenderer
         $content = unserialize($this->field->getValue());
 
         return Html::div(
-            Html::pre(
-                Html::code(print_r($content, true))->addAttributes([
+            new Element(
+                'pre',
+                (new Element('code', print_r($content, true)))->addAttributes([
                     'style' => $this->getStyle([
                         'white-space' => 'pre-wrap'
                     ])

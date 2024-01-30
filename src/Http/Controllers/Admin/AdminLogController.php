@@ -2,7 +2,7 @@
 
 namespace Arbory\AdminLog\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Arbory\AdminLog\Admin\Form\Serialization;
 use Arbory\AdminLog\Models\AdminLog;
 use Arbory\Base\Admin\Form;
