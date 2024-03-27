@@ -33,6 +33,6 @@ grumphp:
       whitelist_patterns: ['/^src(.*)/', '/^config(.*)/', '/^resources(.*)/']
       ruleset: ['./phpmd-ruleset.xml']
     phpmnd:
-      directory: 'app'
+      directory: 'src'
       hint: false
 
