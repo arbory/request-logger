@@ -19,12 +19,12 @@
         }
     },
     "require": {
-        "laravel/framework": "^9",
-        "arbory/arbory": "^2"
+        "laravel/framework": "^v10",
+        "arbory/arbory": "^3"
     },
     "require-dev": {
         "cubesystems/static-analysers": "^3.1",
-        "orchestra/testbench": "^7.11",
+        "orchestra/testbench": "^v8.22",
         "psr/simple-cache": "^2"
     },
     "extra": {
