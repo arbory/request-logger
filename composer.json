@@ -19,8 +19,8 @@
         }
     },
     "require": {
-        "laravel/framework": "^v10",
-        "arbory/arbory": "^3"
+        "laravel/framework": "^v11",
+        "arbory/arbory": "^4"
     },
     "require-dev": {
         "cubesystems/static-analysers": "^3.1",
