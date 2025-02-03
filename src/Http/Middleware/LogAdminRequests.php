@@ -43,7 +43,7 @@ class LogAdminRequests
             'request_method' => $request->getRealMethod(),
             'http_referer' => join(',', Arr::wrap($request->header('HTTP_REFERER', null))),
             'user_agent' => $request->userAgent(),
-            'http_content_type' => $request->getContentType(),
+            'http_content_type' => $request->getContentTypeFormat(),
             'http_cookie' => serialize($sanitizer->sanitize($request->cookies->all())),
             'session' => serialize($sanitizer->sanitize($this->getSession())),
             'content' => serialize($sanitizer->sanitize($request->all())),
