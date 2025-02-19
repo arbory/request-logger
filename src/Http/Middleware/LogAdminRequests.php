@@ -12,17 +12,8 @@ use Illuminate\Support\Arr;
 
 class LogAdminRequests
 {
-    /** @var Sentinel */
-    protected $sentinel;
-
-    /** @var mixed|Repository */
-    protected $config;
-
-    /** @var array */
-    protected $hideFields = [
-        'password',
-        'password_confirmation',
-    ];
+    protected Sentinel $sentinel;
+    protected Repository $config;
 
     public function __construct(Sentinel $sentinel)
     {
@@ -35,8 +26,8 @@ class LogAdminRequests
         $sanitizer = new Sanitizer();
         $user = $this->sentinel->getUser();
 
-        AdminLog::create([
-            'user_name' => $user ? $user->getUserLogin() : null,
+        AdminLog::query()->create([
+            'user_name' => $user?->getUserLogin(),
             'request_uri' => $sanitizer->sanitize($request->getUri()),
             'ip' => $request->getClientIp(),
             'ips' => join(',', $request->ips()),

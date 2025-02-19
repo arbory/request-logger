@@ -2,21 +2,15 @@
 
 namespace Arbory\AdminLog\Utils;
 
+use Closure;
 use Illuminate\Support\Arr;
 
 class Sanitizer
 {
-    /** @var array */
-    protected $config;
-
-    /** @var string */
-    protected $removeValueNotification;
-
-    /** @var array */
-    protected $sensitiveStringPatterns;
-
-    /** @var array */
-    protected $sensitiveKeyPatterns;
+    protected array $config;
+    protected string $removeValueNotification;
+    protected array $sensitiveStringPatterns;
+    protected array $sensitiveKeyPatterns;
 
     public function __construct()
     {
@@ -79,24 +73,22 @@ class Sanitizer
 
     protected function sanitizeArrayValues(array $array): array
     {
-        if (is_array($array)) {
-            foreach ($array as $key => $value) {
-                if (is_object($value)) {
-                    if ($value instanceof \Closure) {
-                        $value = null;
-                    }
-                    $value = (array)$value;
-                    $array[$key] = $value;
+        foreach ($array as $key => $value) {
+            if (is_object($value)) {
+                if ($value instanceof Closure) {
+                    $value = null;
                 }
+                $value = (array)$value;
+                $array[$key] = $value;
+            }
 
-                if ($this->isSensitiveArrayKey($key)) {
-                    $array[$key] = $this->getRemovedValueNotification();
-                    continue;
-                }
+            if ($this->isSensitiveArrayKey($key)) {
+                $array[$key] = $this->getRemovedValueNotification();
+                continue;
+            }
 
-                if (is_array($value)) {
-                    $array[$key] = $this->sanitizeArrayValues($value);
-                }
+            if (is_array($value)) {
+                $array[$key] = $this->sanitizeArrayValues($value);
             }
         }
 

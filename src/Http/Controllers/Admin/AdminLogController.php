@@ -18,8 +18,7 @@ class AdminLogController extends Controller
 {
     use Crudify;
 
-    /** @var string */
-    protected $resource = AdminLog::class;
+    protected string $resource = AdminLog::class;
 
     protected function form(Form $form): Form
     {
