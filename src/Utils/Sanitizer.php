@@ -8,9 +8,9 @@ use Illuminate\Support\Arr;
 class Sanitizer
 {
     protected array $config;
-    protected string $removeValueNotification;
+    protected ?string $removeValueNotification = null;
     protected array $sensitiveStringPatterns;
-    protected array $sensitiveKeyPatterns;
+    protected ?array $sensitiveKeyPatterns = null;
 
     public function __construct()
     {

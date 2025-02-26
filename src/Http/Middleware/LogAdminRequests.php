@@ -6,19 +6,16 @@ use Cartalyst\Sentinel\Sentinel;
 use Closure;
 use Arbory\AdminLog\Models\AdminLog;
 use Arbory\AdminLog\Utils\Sanitizer;
-use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class LogAdminRequests
 {
     protected Sentinel $sentinel;
-    protected Repository $config;
 
     public function __construct(Sentinel $sentinel)
     {
         $this->sentinel = $sentinel;
-        $this->config = config('admin-log');
     }
 
     public function handle(Request $request, Closure $next): mixed
@@ -48,7 +45,7 @@ class LogAdminRequests
         $session = request()->session()->all();
 
         return collect($session)
-            ->except($this->config['session_blacklist_keys'])
+            ->except(config('admin-log.session_blacklist_keys'))
             ->toArray();
     }
 }
