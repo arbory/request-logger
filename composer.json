@@ -12,6 +12,12 @@
             "email": "janis.osenieks@cube.lv"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:sabineabele/static-analysers.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Arbory\\AdminLog\\": "src/",
@@ -19,13 +25,13 @@
         }
     },
     "require": {
-        "laravel/framework": "^v11",
-        "arbory/arbory": "^4"
+        "laravel/framework": "^v12.60",
+        "arbory/arbory": "^5"
     },
     "require-dev": {
-        "cubesystems/static-analysers": "^5.0",
-        "orchestra/testbench": "^v9.11",
-        "psr/simple-cache": "^2"
+        "cubesystems/static-analysers": "dev-laravel-12",
+        "orchestra/testbench": "^v10.11",
+        "psr/simple-cache": "^3"
     },
     "extra": {
         "laravel": {
