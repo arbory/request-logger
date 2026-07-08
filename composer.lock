@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc14823b874e871fd395f36786cf97ae",
+    "content-hash": "7c7f14a62610ff271c6132657612bd08",
     "packages": [
         {
             "name": "arbory/arbory",
@@ -8672,16 +8672,16 @@
         },
         {
             "name": "cubesystems/static-analysers",
-            "version": "dev-laravel-12",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sabineabele/static-analysers.git",
-                "reference": "200ca215e5b0a32a6409a5c057ee86552db10897"
+                "url": "https://github.com/cubesystems/static-analysers.git",
+                "reference": "8f6aa37a5b7e9a30038bdc4ec7ebba5c8f3daf90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabineabele/static-analysers/zipball/200ca215e5b0a32a6409a5c057ee86552db10897",
-                "reference": "200ca215e5b0a32a6409a5c057ee86552db10897",
+                "url": "https://api.github.com/repos/cubesystems/static-analysers/zipball/8f6aa37a5b7e9a30038bdc4ec7ebba5c8f3daf90",
+                "reference": "8f6aa37a5b7e9a30038bdc4ec7ebba5c8f3daf90",
                 "shasum": ""
             },
             "require": {
@@ -8693,14 +8693,16 @@
                 "wapmorgan/php-deprecation-detector": "^2.0"
             },
             "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Grumphp wrapper for analysing Laravel projects",
             "support": {
-                "source": "https://github.com/sabineabele/static-analysers/tree/laravel-12"
+                "issues": "https://github.com/cubesystems/static-analysers/issues",
+                "source": "https://github.com/cubesystems/static-analysers/tree/6.0.0"
             },
-            "time": "2026-06-11T08:38:28+00:00"
+            "time": "2026-07-08T11:50:50+00:00"
         },
         {
             "name": "daverandom/libdns",
@@ -13785,12 +13787,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "cubesystems/static-analysers": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
